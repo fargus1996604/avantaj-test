@@ -498,6 +498,8 @@ GameObject:
   - component: {fileID: 464311048}
   - component: {fileID: 464311050}
   - component: {fileID: 464311049}
+  - component: {fileID: 464311052}
+  - component: {fileID: 464311051}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -531,11 +533,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a40a94de9a320fe469bc91cb1eed5fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _configuration: {fileID: 11400000, guid: 4ae69da18d9aea044838e69387ee22b1, type: 2}
   _itemsContainer: {fileID: 11400000, guid: c7ab2ae86e4a9d947822e2a02d679f63, type: 2}
   _levelWasLoaded: {fileID: 11400000, guid: fa0a1c73181a6304dae7cd7b14a3f5b7, type: 2}
   _gameWin: {fileID: 11400000, guid: 98f015260a2dcdb428f49f1a62961512, type: 2}
   _pointsUpdated: {fileID: 11400000, guid: 5b317aaa89bcf0c4a8e93cdcf8a3170e, type: 2}
-  _maxPoints: 100
 --- !u!114 &464311048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,6 +605,59 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 0dc981f158acf954fa934c424a6bfa04, type: 2}
           m_ObjectArgumentAssemblyTypeName: IntGameEvent, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 464311051}
+        m_TargetAssemblyTypeName: ConveyourMultiplier, Assembly-CSharp
+        m_MethodName: OnItemCollected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &464311051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464311045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70bd28090efed444bbd32965c30fe81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 1601585876}
+--- !u!114 &464311052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464311045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e839e4c12473014b9b3d3faccc0f61d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: fa0a1c73181a6304dae7cd7b14a3f5b7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 464311051}
+        m_TargetAssemblyTypeName: ConveyourMultiplier, Assembly-CSharp
+        m_MethodName: OnGameLevelLoaded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2157,7 +2212,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 1.1}

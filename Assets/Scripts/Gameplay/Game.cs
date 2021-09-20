@@ -6,6 +6,10 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     [SerializeField]
+    private GameConfiguration _configuration;
+    public GameConfiguration Configuration => _configuration;
+
+    [SerializeField]
     private ItemList _itemsContainer;
 
     [SerializeField]
@@ -16,9 +20,6 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     private GameEvent _pointsUpdated;
-
-    [SerializeField]
-    private int _maxPoints;
 
     private LevelData _level;
     public LevelData Level
@@ -37,7 +38,7 @@ public class Game : MonoBehaviour
         var itemsGroup = GetRandomItems(_itemsContainer.Items);
         if (itemsGroup.firstItem != null && itemsGroup.secondItem != null)
         {
-            Level = new LevelData(itemsGroup.firstItem, itemsGroup.secondItem, _maxPoints);
+            Level = new LevelData(itemsGroup.firstItem, itemsGroup.secondItem, _configuration.MaxPoints);
             _levelWasLoaded.Raise(Level);
         }
     }
@@ -62,7 +63,7 @@ public class Game : MonoBehaviour
 
     private (ItemData firstItem, ItemData secondItem) GetRandomItems(List<ItemData> items)
     {
-        if (items.Count < 3) return (null, null);
+        if (items.Count < 2) return (null, null);
 
         var random = new System.Random();
         var randomizedList = items.OrderBy(item => random.Next()).ToList();

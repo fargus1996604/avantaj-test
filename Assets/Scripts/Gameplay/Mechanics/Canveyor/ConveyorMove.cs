@@ -34,7 +34,7 @@ public class ConveyorMove : MonoBehaviour
     private void Update()
     {
         if (Controller == null) return;
-        transform.position += Controller.MoveDirection * (Controller.MoveSpeed * Controller.PartHeight) * Time.deltaTime;
+        transform.position += Controller.MoveDirection * (Controller.WorkingSpeed * Controller.PartHeight) * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

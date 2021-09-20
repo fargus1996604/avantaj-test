@@ -18,7 +18,13 @@ public class ConveyorController : MonoBehaviour
 
     [SerializeField]
     private float _moveSpeed;
-    public float MoveSpeed => _moveSpeed * _moveRatio;
+    public float MoveSpeed
+    {
+        get => _moveSpeed;
+        set => _moveSpeed = value;
+    }
+
+    public float WorkingSpeed => MoveSpeed * _moveRatio;
 
     [SerializeField]
     private float _position;
@@ -56,7 +62,7 @@ public class ConveyorController : MonoBehaviour
 
     private void Update()
     {
-        Position += MoveSpeed * Time.deltaTime;
+        Position += WorkingSpeed * Time.deltaTime;
         Sprite.material.SetTextureOffset("_MainTex", new Vector2(0, Position));
     }
 
