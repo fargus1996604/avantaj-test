@@ -24,9 +24,7 @@ public class ConveyorGizmos : MonoBehaviour
         Gizmos.DrawWireSphere(Controller.Sprite.transform.position, 0.2f);
 
         Gizmos.color = Color.green;
-        DrawArrowGizmos(Controller.Sprite.transform.position, Controller.MoveDirection);
-
-        Gizmos.DrawWireCube(Controller.GetPlatformBounds().center, Controller.GetPlatformBounds().size);
+        DrawArrowGizmos(Controller.TopMidPoint, Controller.MoveDirection);
     }
 
     private void DrawArrowGizmos(Vector3 pos, Vector3 direction, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)

@@ -9,10 +9,6 @@ public class ConveyorController : MonoBehaviour
     public SpriteRenderer Sprite => _sprite;
 
     [SerializeField]
-    private Bounds _bounds;
-    public Bounds Bounds => _bounds;
-
-    [SerializeField]
     private float _partheight;
     public float PartHeight => _partheight;
 
@@ -32,6 +28,18 @@ public class ConveyorController : MonoBehaviour
         private set => _position = value;
     }
 
+    public Vector3 TopMidPoint
+    {
+        get
+        {
+            if(Sprite != null)
+            {
+                return Sprite.transform.position;
+            }
+            return Vector3.zero;
+        }
+    }
+
     public Vector3 MoveDirection
     {
         get
@@ -44,36 +52,9 @@ public class ConveyorController : MonoBehaviour
         }
     }
 
-    private List<ConveyorMove> _items;
-
     private void Update()
     {
         Position += MoveSpeed * Time.deltaTime;
         Sprite.material.SetTextureOffset("_MainTex", new Vector2(0, Position));
-    }
-
-    public void PlaceItem(ConveyorMove item)
-    {
-        if (_items.Contains(item)) return;
-        item.Controller = this;
-        _items.Add(item);
-    }
-
-    public void DropItem(ConveyorMove item)
-    {
-        if (_items.Remove(item))
-        {
-            item.Controller = null;
-        }
-    }
-
-    public bool IsItemOnPlatform(ConveyorMove item)
-    {
-        return GetPlatformBounds().Contains(item.transform.position);
-    }
-
-    public Bounds GetPlatformBounds()
-    {
-        return new Bounds(transform.position + Bounds.center, Bounds.size);
     }
 }
