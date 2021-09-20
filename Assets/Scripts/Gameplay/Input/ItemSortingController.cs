@@ -15,7 +15,7 @@ public class ItemSortingController : MonoBehaviour
     private ActionZone _actionZone;
 
     [SerializeField]
-    private float _swipeDetectionDistance = 1f;
+    private float _swipeDetectionDistance = 20f;
 
     private Vector2 _beginMousePosition;
 

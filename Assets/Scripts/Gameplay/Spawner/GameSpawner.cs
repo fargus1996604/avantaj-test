@@ -29,6 +29,7 @@ public class GameSpawner : MonoBehaviour
     private GameObject _itemObject;
 
     [SerializeField]
+    [Range(1,10)]
     private int _maxSameItemCount;
 
     private float _lastSpawnerPosition;
@@ -45,7 +46,8 @@ public class GameSpawner : MonoBehaviour
             new MovableItemSpawner().Spawn(_itemObject, _conveyorController.TopMidPoint, randomItemData);
             _lastSpawnerPosition = Mathf.CeilToInt(_conveyorController.Position);
 
-            int spawndCount = _lastItemSpawnedData.Key == randomItemData ? _lastItemSpawnedData.Value + 1 : 0;
+            int spawndCount = _lastItemSpawnedData.Key == randomItemData ? _lastItemSpawnedData.Value + 1 : 1;
+            Debug.Log(spawndCount);
             _lastItemSpawnedData = new KeyValuePair<ItemData, int>(randomItemData, spawndCount);
         }
     }
