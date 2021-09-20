@@ -14,6 +14,12 @@ public class Game : MonoBehaviour
     [SerializeField]
     private GameEvent _gameWin;
 
+    [SerializeField]
+    private GameEvent _pointsUpdated;
+
+    [SerializeField]
+    private int _maxPoints;
+
     private LevelData _level;
     public LevelData Level
     {
@@ -31,17 +37,18 @@ public class Game : MonoBehaviour
         var itemsGroup = GetRandomItems(_itemsContainer.Items);
         if (itemsGroup.firstItem != null && itemsGroup.secondItem != null)
         {
-            Level = new LevelData(itemsGroup.firstItem, itemsGroup.secondItem);
+            Level = new LevelData(itemsGroup.firstItem, itemsGroup.secondItem, _maxPoints);
             _levelWasLoaded.Raise(Level);
         }
     }
 
     public void AddPoints(IntGameEvent eventData)
     {
-        if (Level == null || Level.Points >= 50) return;
+        if (Level == null || Level.Points >= Level.MaxPoints) return;
         Level.Points += eventData.Number;
+        _pointsUpdated?.Raise();
 
-        if (Level.Points >= 50)
+        if (Level.Points >= Level.MaxPoints)
         {
             Level = null;
             _gameWin.Raise();

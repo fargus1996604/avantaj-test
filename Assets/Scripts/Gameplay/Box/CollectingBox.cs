@@ -15,6 +15,12 @@ public class CollectingBox : MonoBehaviour
     [SerializeField]
     private GameEvent _wrongItemCollected;
 
+    [SerializeField]
+    private GameObject _addPoints;
+
+    [SerializeField]
+    private Transform _addPointsSpawn;
+
     private ItemData _data;
     public ItemData Data
     {
@@ -60,6 +66,7 @@ public class CollectingBox : MonoBehaviour
             if (item.Data == Data)
             {
                 Destroy(item.gameObject);
+                ShowAddPoints(10);
                 _itemCollected.Raise(10);
             }
             else
@@ -68,5 +75,15 @@ public class CollectingBox : MonoBehaviour
                 _wrongItemCollected.Raise();
             }
         });
+    }
+
+    private void ShowAddPoints(int points)
+    {
+        var addPoints = Instantiate(_addPoints, _addPointsSpawn.position, Quaternion.identity);
+        if (addPoints.TryGetComponent<UIAddPoints>(out var uiAddPoints))
+        {
+            uiAddPoints.ShowPoints(points);
+            uiAddPoints.transform.DOMoveY(1f, 1f).OnComplete(() => { Destroy(addPoints); });
+        }
     }
 }
