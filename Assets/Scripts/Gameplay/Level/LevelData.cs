@@ -17,6 +17,13 @@ public class LevelData
         private set => _secondItem = value;
     }
 
+    private int _points;
+    public int Points
+    {
+        get => _points;
+        set => _points = value;
+    }
+
     public LevelData(ItemData fisrtItem, ItemData secondItem)
     {
         FirstItem = fisrtItem;

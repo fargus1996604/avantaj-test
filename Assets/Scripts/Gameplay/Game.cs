@@ -11,6 +11,9 @@ public class Game : MonoBehaviour
     [SerializeField]
     private LevelGameEvent _levelWasLoaded;
 
+    [SerializeField]
+    private GameEvent _gameWin;
+
     private LevelData _level;
     public LevelData Level
     {
@@ -31,6 +34,23 @@ public class Game : MonoBehaviour
             Level = new LevelData(itemsGroup.firstItem, itemsGroup.secondItem);
             _levelWasLoaded.Raise(Level);
         }
+    }
+
+    public void AddPoints(IntGameEvent eventData)
+    {
+        if (Level == null || Level.Points >= 50) return;
+        Level.Points += eventData.Number;
+
+        if (Level.Points >= 50)
+        {
+            Level = null;
+            _gameWin.Raise();
+        }
+    }
+
+    public void GameLose()
+    {
+        Level = null;
     }
 
     private (ItemData firstItem, ItemData secondItem) GetRandomItems(List<ItemData> items)

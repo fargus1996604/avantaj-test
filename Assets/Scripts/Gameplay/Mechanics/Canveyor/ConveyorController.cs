@@ -18,7 +18,7 @@ public class ConveyorController : MonoBehaviour
 
     [SerializeField]
     private float _moveSpeed;
-    public float MoveSpeed => _moveSpeed;
+    public float MoveSpeed => _moveSpeed * _moveRatio;
 
     [SerializeField]
     private float _position;
@@ -32,7 +32,7 @@ public class ConveyorController : MonoBehaviour
     {
         get
         {
-            if(Sprite != null)
+            if (Sprite != null)
             {
                 return Sprite.transform.position;
             }
@@ -52,9 +52,35 @@ public class ConveyorController : MonoBehaviour
         }
     }
 
+    private float _moveRatio = 0f;
+
     private void Update()
     {
         Position += MoveSpeed * Time.deltaTime;
         Sprite.material.SetTextureOffset("_MainTex", new Vector2(0, Position));
+    }
+
+    public void TurnOn()
+    {
+        StopAllCoroutines();
+        StartCoroutine(LerpMoveRatio(1f, 1f));
+    }
+
+    public void TurnOff()
+    {
+        StopAllCoroutines();
+        StartCoroutine(LerpMoveRatio(0f, 1f));
+    }
+
+    private IEnumerator LerpMoveRatio(float endValue, float duration)
+    {
+        float startValue = _moveRatio;
+        float time = 0;
+        while (_moveRatio != endValue)
+        {
+            _moveRatio = Mathf.Lerp(startValue, endValue, time);
+            time += Time.deltaTime / duration;
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

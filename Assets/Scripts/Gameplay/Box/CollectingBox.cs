@@ -9,6 +9,12 @@ public class CollectingBox : MonoBehaviour
     private SpriteRenderer _renderer;
     public SpriteRenderer Renderer => _renderer;
 
+    [SerializeField]
+    private IntGameEvent _itemCollected;
+
+    [SerializeField]
+    private GameEvent _wrongItemCollected;
+
     private ItemData _data;
     public ItemData Data
     {
@@ -46,15 +52,20 @@ public class CollectingBox : MonoBehaviour
             Destroy(move);
         }
 
+        //Destroy item component to prevent trigger with other triggers
+        Destroy(move);
+
         item.transform.DOMove(transform.position, 0.4f).OnComplete(() =>
         {
             if (item.Data == Data)
             {
                 Destroy(item.gameObject);
+                _itemCollected.Raise(10);
             }
             else
             {
                 item.transform.DOMoveY(-10, 4f).OnComplete(() => { Destroy(item.gameObject); });
+                _wrongItemCollected.Raise();
             }
         });
     }
