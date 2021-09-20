@@ -47,7 +47,6 @@ public class GameSpawner : MonoBehaviour
             _lastSpawnerPosition = Mathf.CeilToInt(_conveyorController.Position);
 
             int spawndCount = _lastItemSpawnedData.Key == randomItemData ? _lastItemSpawnedData.Value + 1 : 1;
-            Debug.Log(spawndCount);
             _lastItemSpawnedData = new KeyValuePair<ItemData, int>(randomItemData, spawndCount);
         }
     }
