@@ -1,0 +1,61 @@
+using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CollectingBox : MonoBehaviour
+{
+    [SerializeField]
+    private SpriteRenderer _renderer;
+    public SpriteRenderer Renderer => _renderer;
+
+    private ItemData _data;
+    public ItemData Data
+    {
+        get => _data;
+        private set => _data = value;
+    }
+
+    public void Setup(ItemData data)
+    {
+        Data = data;
+        UpdateView();
+    }
+
+    private void UpdateView()
+    {
+        if (Renderer == null)
+        {
+            Debug.LogWarning("Renderer is not assigned!!");
+            return;
+        }
+
+        if (Data == null)
+        {
+            Debug.LogWarning("Data is not assigned!!");
+            return;
+        }
+
+        Renderer.sprite = Data.ShadowSprite;
+    }
+
+    public void CollectItem(Item item)
+    {
+        if (item.TryGetComponent<ConveyorMove>(out var move))
+        {
+            Destroy(move);
+        }
+
+        item.transform.DOMove(transform.position, 0.4f).OnComplete(() =>
+        {
+            if (item.Data == Data)
+            {
+                Destroy(item.gameObject);
+            }
+            else
+            {
+                item.transform.DOMoveY(-10, 4f).OnComplete(() => { Destroy(item.gameObject); });
+            }
+        });
+    }
+}

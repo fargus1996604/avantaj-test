@@ -39,7 +39,6 @@ public class ConveyorMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
         if(collision.TryGetComponent<ConveyorController>(out var controller))
         {
             Controller = controller;

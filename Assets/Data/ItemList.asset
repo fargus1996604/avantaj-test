@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f4c8d3205f62c4ab898fe03c34c12c, type: 3}
+  m_Name: ItemList
+  m_EditorClassIdentifier: 
+  Items:
+  - _baseSprite: {fileID: 21300000, guid: adbfc7490b9bcff42a6cd99224aa4693, type: 3}
+    _highlightSprite: {fileID: 21300000, guid: 38d1c10aca93d1b4bae9c545993894eb, type: 3}
+    _shadowSprite: {fileID: 21300000, guid: 2a56493dce9608a4ab179af142057b21, type: 3}
+  - _baseSprite: {fileID: 21300000, guid: 45743ea0efa538a458c583dd0be18bdc, type: 3}
+    _highlightSprite: {fileID: 21300000, guid: 3c360ae898d781b48b263206babeeeef, type: 3}
+    _shadowSprite: {fileID: 21300000, guid: 83bcc0fe06404d94187fd9fcc48e576a, type: 3}
+  - _baseSprite: {fileID: 21300000, guid: 82f008c7d8de0e34ab8701ec895960ac, type: 3}
+    _highlightSprite: {fileID: 21300000, guid: 0df93e4c2ce255d469e2276172234e61, type: 3}
+    _shadowSprite: {fileID: 21300000, guid: 4f0bfd7c0b69df546b60ea588de6ea1f, type: 3}
+  - _baseSprite: {fileID: 21300000, guid: 19a53524bdbf7e646b8b8e87e2c12696, type: 3}
+    _highlightSprite: {fileID: 21300000, guid: 526ae7499ba4b2343b6f1004ce91afb1, type: 3}
+    _shadowSprite: {fileID: 21300000, guid: 8a80610b2a61ea842be2380e4d042baa, type: 3}
+  - _baseSprite: {fileID: 21300000, guid: 306f02cbe9093b949a572537fd9a4070, type: 3}
+    _highlightSprite: {fileID: 21300000, guid: 92d2c14a2db1eca45966abdd5968ac12, type: 3}
+    _shadowSprite: {fileID: 21300000, guid: 97036e62a69b8a84f91b829833e5878f, type: 3}
+  - _baseSprite: {fileID: 21300000, guid: 3930108b465b8dc44a3a9ec0bbb33235, type: 3}
+    _highlightSprite: {fileID: 21300000, guid: c6032c52ad164c840b72ef9222ac7cf2, type: 3}
+    _shadowSprite: {fileID: 21300000, guid: d9b868fc42466db4199f1743a338c243, type: 3}
+  - _baseSprite: {fileID: 21300000, guid: 7d7c6e6952906cc4ebf6913691e81227, type: 3}
+    _highlightSprite: {fileID: 21300000, guid: 30dbf124f764f2f4682e9eb873d79530, type: 3}
+    _shadowSprite: {fileID: 21300000, guid: e974e4a11a6c6b446b9f99cb7e0a198d, type: 3}
+  - _baseSprite: {fileID: 21300000, guid: df15e4f25551f474b9d4919e22fc0380, type: 3}
+    _highlightSprite: {fileID: 21300000, guid: 16828d414102a0440a9fe07c5b8e06ee, type: 3}
+    _shadowSprite: {fileID: 21300000, guid: 540b9fd05a1657d44b9a951dd08825d8, type: 3}

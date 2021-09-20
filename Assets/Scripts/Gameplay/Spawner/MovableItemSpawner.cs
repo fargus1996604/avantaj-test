@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MovableItemSpawner
 {
-    public ConveyorMove Spawn(GameObject obj, Vector3 position)
+    public ConveyorMove Spawn(GameObject obj, Vector3 position, ItemData data)
     {
-        var item = new ItemSpawner().Spawn(obj, position);
-        if(item != null)
+        var item = new ItemSpawner().Spawn(obj, position, data);
+        if (item != null)
         {
             return item.gameObject.AddComponent<ConveyorMove>();
         }

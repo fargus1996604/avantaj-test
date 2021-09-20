@@ -1,28 +1,44 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Game : MonoBehaviour
 {
     [SerializeField]
-    private ConveyorController _conveyorController;
+    private ItemList _itemsContainer;
 
     [SerializeField]
-    private int _spawnStep = 1;
+    private LevelGameEvent _levelWasLoaded;
 
-    [SerializeField]
-    private GameObject _itemObject;
-
-    [SerializeField]
-    private float _lastSpawnerPosition;
-
-    private void Update()
+    private LevelData _level;
+    public LevelData Level
     {
-        if (_lastSpawnerPosition + (_spawnStep + 0.5f) <= _conveyorController.Position)
+        get => _level;
+        private set => _level = value;
+    }
+
+    private void Start()
+    {
+        LoadLevel();
+    }
+
+    private void LoadLevel()
+    {
+        var itemsGroup = GetRandomItems(_itemsContainer.Items);
+        if (itemsGroup.firstItem != null && itemsGroup.secondItem != null)
         {
-            new MovableItemSpawner().Spawn(_itemObject, _conveyorController.TopMidPoint);
-            _lastSpawnerPosition = Mathf.CeilToInt(_conveyorController.Position);
+            Level = new LevelData(itemsGroup.firstItem, itemsGroup.secondItem);
+            _levelWasLoaded.Raise(Level);
         }
+    }
+
+    private (ItemData firstItem, ItemData secondItem) GetRandomItems(List<ItemData> items)
+    {
+        if (items.Count < 3) return (null, null);
+
+        var random = new System.Random();
+        var randomizedList = items.OrderBy(item => random.Next()).ToList();
+        return (randomizedList[0], randomizedList[1]);
     }
 }
